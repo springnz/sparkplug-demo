@@ -3,7 +3,6 @@ package springnz.sparkplug.demo
 import org.apache.spark.{ SparkConf, SparkContext }
 
 trait WordCountSimple {
-
   val sparkContext = new SparkContext(
     new SparkConf().setMaster("local[2]").setAppName("WordCount"))
 
@@ -18,5 +17,4 @@ trait WordCountSimple {
   def topWords(n: Int) = count.takeOrdered(n)(Ordering.by(-_._2))
 
   def stop(): Unit = sparkContext.stop()
-
 }

@@ -1,13 +1,14 @@
 import sbt._
 
 object Dependencies {
-  val sparkPlugVersion = "0.2.7-SNAPSHOT"
+  val sparkPlugVersion = "0.2.8-SNAPSHOT"
   val sparkVersion = "1.5.1"
   val akkaVersion = "2.3.12"
 
 
   // Spark
   val sparkCore = "org.apache.spark" %% "spark-core" % sparkVersion % Provided
+  val sparkLauncher = "org.apache.spark" %% "spark-launcher" % sparkVersion % Provided
 
   // Other libraries
   val scalaz = "org.scalaz" %% "scalaz-core" % "7.1.3"
@@ -21,9 +22,7 @@ object Dependencies {
   val logBackDependencies = Seq(logBackClassic, logBackCore)
 
   val sparkPlugCore = "springnz" %% "sparkplug-core" % sparkPlugVersion changing ()
-  val sparkPlugExamples = "springnz" %% "sparkplug-examples" % sparkPlugVersion changing ()
   val sparkPlugExecutor = "springnz" %% "sparkplug-executor" % sparkPlugVersion changing ()
-  val sparkPlugExtras = "springnz" %% "sparkplug-extras" % sparkPlugVersion changing ()
   val sparkPlugLauncher = "springnz" %% "sparkplug-launcher" % sparkPlugVersion changing ()
 
   // Share test
@@ -31,7 +30,7 @@ object Dependencies {
   val scalaCheck = "org.scalacheck" %% "scalacheck" % "1.12.4" % Test
 
   val sparkCoreDependencies = Seq(scalaz, sparkCore)
-  val sparkPlugDependencies = Seq(sparkPlugCore, sparkPlugExtras)
+  val sparkPlugDependencies = Seq(sparkPlugCore)
 
   val sharedCompileDependencies = Seq(slf4jApi, betterFiles)
   val sharedTestDependencies = Seq(scalaTest, scalaCheck) ++ logBackDependencies
@@ -45,7 +44,7 @@ object Dependencies {
 
   val demoPipelineDependencies = sparkExtraLibDependencies ++ sharedDependencies
 
-  val demoClientDependencies = Seq(sparkPlugLauncher, sparkPlugExecutor, sparkPlugExamples) ++ sharedDependencies
+  val demoClientDependencies = Seq(sparkPlugLauncher, sparkPlugExecutor, sparkLauncher) ++ sharedDependencies
 
   // Dependency overrides
   val nettyOverride = "io.netty" % "netty" % "3.8.0.Final"

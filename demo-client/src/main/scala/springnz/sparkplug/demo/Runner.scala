@@ -1,6 +1,5 @@
 package springnz.sparkplug.demo
 
-import better.files._
 import springnz.sparkplug.client.ClientExecutor
 
 import scala.util.{ Failure, Success }
@@ -13,7 +12,7 @@ object Runner {
     val clientExecutorParams = ClientExecutorParams(jarPath = Some(Util.baseDir("demo-client")))
     val executor: ClientExecutor = ClientExecutor.create(clientExecutorParams)
 
-    val pluginName = ""
+    val pluginName = "springnz.sparkplug.demo.LetterCountPlugin"
 
     import scala.concurrent.ExecutionContext.Implicits.global
     executor.execute(pluginName, None) onComplete {
@@ -24,6 +23,7 @@ object Runner {
         val msg = s"Failed running SparkPlug plugin '$pluginName'"
         log.error(msg)
     }
+    executor.shutDown()
   }
 
 }

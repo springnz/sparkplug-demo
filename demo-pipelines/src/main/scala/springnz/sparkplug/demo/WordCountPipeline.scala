@@ -1,9 +1,8 @@
 package springnz.sparkplug.demo
 
 import springnz.sparkplug.core.SparkOperation
-import springnz.util.Logging
 
-trait WordCountPipeline extends Logging {
+trait WordCountPipeline {
 
   def linesOp = SparkOperation { ctx ⇒
     ctx.textFile(Util.baseDir() + "/TXT/*")

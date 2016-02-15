@@ -2,9 +2,8 @@ package springnz.sparkplug.demo
 
 import org.scalatest.{ Inspectors, ShouldMatchers, WordSpec }
 import springnz.sparkplug.testkit._
-import springnz.util.Logging
 
-class WordCountSimpleTests extends WordSpec with ShouldMatchers with Logging with Inspectors {
+class WordCountSimpleTests extends WordSpec with ShouldMatchers with Inspectors {
 
   trait TestWordCount extends WordCountSimple {
   }
