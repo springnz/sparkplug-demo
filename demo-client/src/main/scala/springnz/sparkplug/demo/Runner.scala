@@ -1,10 +1,11 @@
 package springnz.sparkplug.demo
 
+import com.typesafe.scalalogging.LazyLogging
 import springnz.sparkplug.client.ClientExecutor
 
 import scala.util.{ Failure, Success }
 
-object Runner {
+object Runner extends LazyLogging {
   import ClientExecutor._
 
   def main(args: Array[String]) {
@@ -18,10 +19,10 @@ object Runner {
     executor.execute(pluginName, None) onComplete {
       case Success(result) ⇒
         val msg = s"Finished running SparkPlug plugin '$pluginName'"
-        log.info(msg)
+        logger.info(msg)
       case Failure(failure) ⇒
         val msg = s"Failed running SparkPlug plugin '$pluginName'"
-        log.error(msg)
+        logger.error(msg)
     }
     executor.shutDown()
   }

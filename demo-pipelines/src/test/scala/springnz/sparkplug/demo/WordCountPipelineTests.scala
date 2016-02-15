@@ -1,6 +1,8 @@
 package springnz.sparkplug.demo
 
 import org.scalatest.{ Inspectors, ShouldMatchers, WordSpec }
+
+import springnz.sparkplug.core._
 import springnz.sparkplug.testkit._
 
 class WordCountPipelineTests extends WordSpec with ShouldMatchers with Inspectors {
@@ -11,11 +13,11 @@ class WordCountPipelineTests extends WordSpec with ShouldMatchers with Inspector
   "WordCount" should {
 
     "test linesOp" in new SimpleTestContext("test") with TestWordCount {
-      println(execute(linesOp.collect()).get.toList)
+      println(execute(linesOp.take(100)).get.toList)
     }
 
     "test wordsOp" in new SimpleTestContext("test") with TestWordCount {
-      execute(wordsOp.collect())
+      execute(wordsOp.take(100))
     }
 
     "testCountOp" in new SimpleTestContext("test") with TestWordCount {
